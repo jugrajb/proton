@@ -23,7 +23,7 @@ class Auth {
   }
 
   logout(cb) {
-    this.authenticated = 'not_authenitcated';
+    this.authenticated = 'not_authenticated';
     this.isAdmin = 'not_admin';
     localStorage.removeItem('authenticated')
     localStorage.removeItem('admin')
