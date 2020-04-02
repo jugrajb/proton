@@ -1,24 +1,31 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import {Route, Switch} from 'react-router-dom';
+import auth from './service/auth';
+import MainPage from './pages/main/MainPage';
+import Login from './pages/login/Login';
+import AppLayout from './pages/AppLayout';
+import ProtectedRoute from './service/ProtectedRoute';
+import Game from './pages/game/Game'
+import User from './pages/user/User'
+import Admin from './pages/admin/Admin'
+import { toast } from 'react-toastify';
+import AdminRoute from './service/AdminRoute';
+
+toast.configure();
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Switch>
+        <Route exact path="/login" component={Login}/> 
+        <ProtectedRoute exact path="/" component={MainPage}/>
+        <ProtectedRoute exact path="/app" component={AppLayout}/>
+        <ProtectedRoute path="/game" component={Game}/>
+        <ProtectedRoute exact path="/user" component={User}/>
+        <AdminRoute exact path="/admin" component={Admin}/>
+        <Route path="*" component={() => "404 NOT FOUND"}/>
+      </Switch>
     </div>
   );
 }

@@ -1,0 +1,193 @@
+.login-page {
+  background: url("../../assets/login.gif") no-repeat center center fixed;
+  width: 100vw;
+  height: 100vh;
+  background-size: cover; 
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  background: whitesmoke;
+
+}
+
+.login-container {
+  width: 300px;
+  padding: 40px;
+  background: whitesmoke;
+  border-bottom-left-radius: 24px;
+  border-bottom-right-radius: 24px;
+  text-align: center;
+  height: 300px;
+}
+
+.login-container h1{
+  color: #191919;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.login-container input[type = "text"], .login-container input[type = "password"] {
+  border: 0;
+  background: none;
+  display: block;
+  margin: 20px auto;
+  text-align: center;
+  border: 2px solid #3498db;
+  padding: 14px 10px;
+  width: 200px;
+  outline: none;
+  color: black;
+  border-radius: 24px;
+  transition: 0.25s;
+}
+
+.login-container input[type = "text"]:hover, .login-container input[type = "password"]:hover {
+  width: 280px;
+  border-color: #3498db;
+}
+
+.login-container input[type = "text"]:focus, .login-container input[type = "password"]:focus {
+  width: 280px;
+  border-color: #2ecc71;
+}
+
+.login-container button{
+  border: 0;
+  background: none;
+  display: block;
+  margin: 20px auto;
+  text-align: center;
+  border: 2px solid #f03434;
+  padding: 14px 40px;
+  width: 200px;
+  outline: none;
+  color: black;
+  border-radius: 24px;
+  transition: 0.35s;
+  cursor: pointer;
+}
+
+.login-container button:hover {
+  background: #f03434;
+  color: white;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+} 
+
+.login-tabs {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.login-tabs button[type="login-2"] {
+  background: none;
+  display: block;
+  margin: 0px auto;
+  text-align: center;
+  border: 2px solid #f03434;
+  padding: 14px 40px;
+  width: 50%;
+  outline: none;
+  color: white;
+  transition: 0.35s;
+  cursor: pointer;
+  border-radius: 0px;
+  border-top-left-radius: 24px;
+}
+
+.login-tabs button[type="login-2"]:hover {
+  background: none;
+  display: block;
+  margin: 0px auto;
+  text-align: center;
+  border: 2px solid #f03434;
+  background-color: #f03434;
+  padding: 14px 40px;
+  width: 50%;
+  outline: none;
+  color: white;
+  transition: 0.35s;
+  cursor: pointer;
+  border-radius: 0px;
+  border-top-left-radius: 24px;
+  font-weight: 300px;
+}
+
+.login-tabs button[type="login-1"] {
+  background: none;
+  display: block;
+  margin: 0px auto;
+  text-align: center;
+  border: 2px solid #f03434;
+  background-color: #f03434;
+  padding: 14px 40px;
+  width: 50%;
+  outline: none;
+  color: white;
+  transition: 0.35s;
+  cursor: pointer;
+  border-radius: 0px;
+  border-top-left-radius: 24px;
+}
+
+.login-tabs button[type="signup-1"] {
+  background: none;
+  display: block;
+  margin: 0px auto;
+  text-align: center;
+  border: 2px solid #19b5fe;
+  padding: 14px 40px;
+  width: 50%;
+  outline: none;
+  color: white;
+  transition: 0.35s;
+  cursor: pointer;
+  border-radius: 0px;
+  border-top-right-radius: 24px;
+}
+
+.login-tabs button[type="signup-2"] {
+  background: none;
+  display: block;
+  margin: 0px auto;
+  text-align: center;
+  border: 2px solid #19b5fe;
+  background-color: #19b5fe;
+  padding: 14px 40px;
+  width: 50%;
+  outline: none;
+  color: white;
+  transition: 0.35s;
+  cursor: pointer;
+  border-radius: 0px;
+  border-top-right-radius: 24px;
+}
+
+.login-tabs button[type="signup-1"]:hover {
+  background: none;
+  display: block;
+  margin: 0px auto;
+  text-align: center;
+  border: 2px solid #19b5fe;
+  background-color: #19b5fe;
+  padding: 14px 40px;
+  width: 50%;
+  outline: none;
+  color: white;
+  transition: 0.35s;
+  cursor: pointer;
+  border-radius: 0px;
+  border-top-right-radius: 24px;
+}

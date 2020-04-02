@@ -1,0 +1,71 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  background: whitesmoke;
+
+}
+
+.login-container {
+  width: 300px;
+  padding: 40px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: whitesmoke;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.login-container h1{
+  color: #191919;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.login-container input[type = "text"], .login-container input[type = "password"] {
+  border: 0;
+  background: none;
+  display: block;
+  margin: 20px auto;
+  text-align: center;
+  border: 2px solid #3498db;
+  padding: 14px 10px;
+  width: 200px;
+  outline: none;
+  color: black;
+  border-radius: 24px;
+  transition: 0.25s;
+}
+
+.login-container input[type = "text"]:hover, .login-container input[type = "password"]:hover {
+  width: 280px;
+  border-color: #3498db;
+}
+
+.login-container input[type = "text"]:focus, .login-container input[type = "password"]:focus {
+  width: 280px;
+  border-color: #2ecc71;
+}
+
+.login-container button{
+  border: 0;
+  background: none;
+  display: block;
+  margin: 20px auto;
+  text-align: center;
+  border: 2px solid #f03434;
+  padding: 14px 40px;
+  width: 200px;
+  outline: none;
+  color: black;
+  border-radius: 24px;
+  transition: 0.25s;
+  cursor: pointer;
+}
+
+.login-container button:hover {
+  background: #f03434;
+  color: white;
+}

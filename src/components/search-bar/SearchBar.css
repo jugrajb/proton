@@ -1,0 +1,32 @@
+.search-bar {
+  margin-top: 10%;
+  width: 500px;
+  height: 40px;
+  text-align: left;
+  display: flex;
+  flex-direction: row;
+  background-color: white;
+  border-radius: 20px;
+  padding: 5px;
+}
+
+.search-bar:hover {
+  margin-top: 10%;
+  width: 600px;
+  height: 40px;
+  text-align: left;
+  background-color: white;
+  border-radius: 20px;
+  padding: 5px;
+  box-shadow: 0px 0px 50px darkslategray;
+}
+
+.search-bar {
+  transition-duration: 0.4s;
+}
+
+.search-icon {
+  height: 30px;
+  margin-top: 5px;
+  margin-left: 5px;
+}
