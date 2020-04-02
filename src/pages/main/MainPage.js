@@ -38,16 +38,14 @@ class MainPage extends React.PureComponent {
 
   handleGameRoute(id) {
     const url = "/game/" + id
-    console.log(id);
     this.props.history.push(url)
   }
 
   render() {
     const { games } = this.state;
-    console.log(this.state.games);
 
     return [
-      <Header key="header"/>,
+      <Header key="header" {...this.props} />,
       <div key="page" className="page">
         <div className="banner">
           <SearchBar />

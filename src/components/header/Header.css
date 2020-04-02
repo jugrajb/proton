@@ -61,7 +61,7 @@
 .header-button-container {
   width: 350px;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
 }
 
 .header-user button:hover {

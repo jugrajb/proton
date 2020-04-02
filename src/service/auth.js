@@ -1,37 +1,41 @@
 class Auth {
   constructor() {
-    this.authenticated = localStorage.getItem('authenticated') || false;
-    this.admin = localStorage.getItem('admin') || false;
+    this.authenticated = localStorage.getItem('authenticated') || 'not_authenticated';
+    this.admin = localStorage.getItem('admin') || 'non_admin';
+
+    this.isUserAdmin = this.isUserAdmin.bind(this)
+    this.isAuthenticated = this.isAuthenticated.bind(this)
   }
 
-  login(isAdmin, cb) {
-    this.authenticated = true;
-    this.admin = isAdmin;
-
-    localStorage.setItem('authenticated', true)
-    if(isAdmin)
-      localStorage.setItem('admin', true)
-    else
-    localStorage.setItem('admin', false)
-
-    cb()
+  login(admin, cb) {
+    localStorage.setItem('authenticated', 'authenticated')
+    this.authenticated = 'authenticated';
     
+    if(admin) {
+      localStorage.setItem('admin', 'admin')
+      this.admin = 'admin'
+    } else {
+      localStorage.setItem('admin', 'not_admin')
+      this.admin = 'not_admin';
+    }
+      
+    cb()
   }
 
   logout(cb) {
-    this.authenticated = false;
-    this.isAdmin = false;
+    this.authenticated = 'not_authenitcated';
+    this.isAdmin = 'not_admin';
     localStorage.removeItem('authenticated')
-    localStorage.setItem('admin', false)
+    localStorage.removeItem('admin')
     cb()
   }
 
-  isAdmin() {
-    return this.isAdmin;
+  isUserAdmin() {
+    return this.admin === 'admin';
   }
 
   isAuthenticated() {
-    return this.authenticated;
+    return this.authenticated === 'authenticated';
   }
 }
 

@@ -9,7 +9,6 @@ const Card = withRouter((props) => (
       id={props.game.gid}
       onClick={() => props.onClick(props.game.gid)}
     >
-      {console.log(props.game)}
       <img className="card-image" src={props.cardImage} alt=""/>
       <div className="info"/>
     </button>
