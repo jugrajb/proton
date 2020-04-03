@@ -6,21 +6,21 @@ import TextInput from '../../components/text-input/TextInput';
 import { del, deleteID, post } from '../../service/api';
 import { get } from '../../service/api';
 
-
 class Admin extends React.PureComponent {
   constructor(props) {
     super(props)
 
     this.state = {
       ao_delete_oid: 0,
-      ao_delete_info: {},
+      ao_delete_info: [],
       user_fields: {
         'uid': false,
         'email': false, 
         'password': false, 
         'username': false
       },
-      user_response: []
+      user_filter_response: [],
+      best_users_response: []
     }
     // delete ao
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -28,9 +28,41 @@ class Admin extends React.PureComponent {
     // search user filter
     this.handleCheckboxChange = this.handleCheckboxChange.bind(this);
     this.handleSearchUsers = this.handleSearchUsers.bind(this);
+    // get best users
+    this.handleBestUsers = this.handleBestUsers.bind(this);
   }
 
   componentDidMount() {
+  }
+
+  // renders an html table from a list of json key-value pairs
+  renderTable(rowsObj) {
+    // find keys to use as headers
+    let keys = [];
+    if (rowsObj.length > 0) {
+      keys = Object.keys(rowsObj[0]);
+    }
+    // generate table
+    return(
+      <table>
+        <thead>
+          <tr>
+            {keys.map((key) => (
+              <th key={key}>{key}</th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {rowsObj.map((user, index) => (
+            <tr key={index}>
+              {keys.map((key) => (
+                <td key={key}>{user[key]}</td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    )
   }
 
 
@@ -74,33 +106,24 @@ class Admin extends React.PureComponent {
       num_tuples['video-game-award'] -= res[1].data.length;
       num_tuples['awarded'] -= res[2].data.length;
 
-      console.log('SUCCESS');
+      let ao_delete_info = []
+
+      Object.keys(num_tuples).forEach((key, index) => {
+        ao_delete_info.push({
+          'Relation' : key,
+          'Number of Tuples Removed' : num_tuples[key]
+        });
+      });
+
       // save key-value pairs of tuples deleted in state
-      this.setState({ao_delete_info : num_tuples})
+      this.setState({ao_delete_info : ao_delete_info})
     })
     .catch((err) => {
       console.log(err);
     });
   }
 
-  renderDeleteTable() {
-    const rows = this.state.ao_delete_info;
-    return (
-      <table>
-        <thead>
-          <tr>
-            <th>Relation</th><th>Number of Tuples Removed</th>
-          </tr>
-        </thead>
-        <tbody>
-          {Object.keys(rows).map((key) => (
-            <tr key={key}><td>{key}</td><td>{rows[key]}</td></tr>
-          ))}
-        </tbody>
-      </table>
-    );
-  }
-
+  // Delete AO - main tool element
   deleteAwardOrganization() {
     return (
     <div className="tool">
@@ -117,11 +140,14 @@ class Admin extends React.PureComponent {
             onChange={this.handleInputChange}
             />
           </label>
-          <input type="submit" value="DELETE" />
+          <input 
+          className='delete-button'
+          type="submit" 
+          value="DELETE" />
         </form>
       </div>
       <div className="tool-content">
-        {this.renderDeleteTable()}
+        {this.renderTable(this.state.ao_delete_info)}
       </div>
     </div>
     );
@@ -147,41 +173,15 @@ class Admin extends React.PureComponent {
     const data = {columns : columns}
     post('user-filter/', data)
     .then((res) => {
-      this.setState({user_response : res.data});
+      this.setState({user_filter_response : res.data});
     })
     .catch((err) => {
       console.log(err);
     })
   }
 
-  // renders an html table from a list of json key-value pairs
-  renderUsersTable(rowsObj) {
-    let keys = [];
-    if (rowsObj.length > 0) {
-      keys = Object.keys(rowsObj[0]);
-    }
-    return(
-      <table>
-        <thead>
-          <tr>
-            {keys.map((key) => (
-              <th key={key}>{key}</th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {this.state.user_response.map((user) => (
-            <tr>
-              {keys.map((key) => (
-                <td key={key}>{user[key]}</td>
-              ))}
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    )
-  }
 
+  // Search users filter - main tool element
   searchUsersFilter() {
     const fields = ['uid', 'email', 'password', 'username']
     return (
@@ -202,11 +202,42 @@ class Admin extends React.PureComponent {
               </label>
             )
           })}
-          <input type="submit" value="SEARCH" />
+          <input 
+          className='search-button'
+          type="submit" 
+          value="SEARCH" />
         </form>
         </div>
         <div className="tool-content">
-          {this.renderUsersTable(this.state.user_response)}
+          {this.renderTable(this.state.user_filter_response)}
+        </div>
+      </div>
+    )
+  }
+
+  // Get best users
+
+  handleBestUsers(event) {
+    event.preventDefault();
+    get('best-users/').then((res) => {
+      this.setState({best_users_response : res.data});
+    })
+  }
+
+  getBestUsers() {
+    return (
+      <div className='tool'>
+        <div className="title-text">Get Best Users</div>
+        <div className="tool-content">
+        <input 
+          className='search-button'
+          type="submit" 
+          value="SEARCH"
+          onClick={this.handleBestUsers}
+          />
+        </div>
+        <div className="tool-content">
+          {this.renderTable(this.state.best_users_response)}
         </div>
       </div>
     )
@@ -224,7 +255,7 @@ class Admin extends React.PureComponent {
             <div className="tool-rows">
               {this.deleteAwardOrganization()}
               {this.searchUsersFilter()}
-              <div className="tool"></div>
+              {this.getBestUsers()}
             </div>
           </div>
         </div>

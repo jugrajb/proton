@@ -76,7 +76,7 @@
     font-size: large;
     font-family: sans-serif;
     font-weight: 800;
-    margin-top: 5px;
+    margin-top: 20px;
   }
   
   .tool-content {
@@ -103,6 +103,32 @@
     border: 1px solid #dddddd;
     text-align: left;
     padding: 8px;
+  }
+
+  .delete-button {
+    border-radius: 10px;
+    border-color: #f03434;
+    color: #f03434;
+  }
+
+  .delete-button:hover {
+    background-color: #f03434;
+    color: white;
+    transition: 0.25s;
+    cursor: pointer;
+  }
+
+  .search-button {
+    border-radius: 10px;
+    border-color: #2980f1;
+    color: #2980f1;
+  }
+
+  .search-button:hover {
+    background-color: #2980f1;
+    color: white;
+    transition: 0.25s;
+    cursor: pointer;
   }
   
   
