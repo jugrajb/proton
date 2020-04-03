@@ -85,9 +85,15 @@
       display: block;
   }
 
+  label {
+      margin-left: 10px;
+      margin-right: 10px;
+  }
+
   table {
     /* font-family: arial, sans-serif; */
     border-collapse: collapse;
+    border-radius: 6px;
     width: 80%;
     margin: 0 auto;
   }
