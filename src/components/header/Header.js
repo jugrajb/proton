@@ -2,21 +2,6 @@ import React from 'react';
 import auth from '../../service/auth'
 import './Header.css'
 
-const onLogout = (props) => {
-  auth.logout(() => props.history.push("/login"))
-}
-
-const onUser = (props) => {
-  auth.logout(() => props.history.push("/login"))
-}
-
-const onAdmin = (props) => {
-  auth.logout(() => props.history.push("/login"))
-}
-
-
-
-
 class Header extends React.PureComponent {
   constructor(props) {
     super(props)
@@ -39,7 +24,10 @@ class Header extends React.PureComponent {
 
   logoutButton() {
     return (
-      <button onClick={() => onLogout(this.props)} className="header-auth">
+      <button 
+        onClick={() => auth.logout(() => this.props.history.push("/login"))} 
+        className="header-auth"
+      >
         {this.state.auth ? 'Logout' : 'Login'}
       </button>
     )
@@ -48,7 +36,11 @@ class Header extends React.PureComponent {
   userButton() {
     if(this.state.auth)
       return (
-        <button className="header-user" onClick={() => onUser(this.props)} style={{ marginRight: "20px"}}>
+        <button 
+          className="header-user" 
+          onClick={() => this.props.history.push("/user")} 
+          style={{ marginRight: "20px"}}
+        >
           My Profile
         </button>
       )
@@ -57,7 +49,11 @@ class Header extends React.PureComponent {
   toolsButton() {
     if(this.state.auth && this.state.admin)
       return (
-        <button className="header-admin" onClick={() => onAdmin(this.props)} style={{ marginRight: "20px"}}>
+        <button 
+          className="header-admin" 
+          onClick={() => this.props.history.push("/admin")} 
+          style={{ marginRight: "20px"}}
+        >
           Admin Tools
         </button>
       )

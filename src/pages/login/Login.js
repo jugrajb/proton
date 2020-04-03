@@ -22,6 +22,12 @@ class Login extends React.PureComponent {
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
   }
 
+  componentDidMount() {
+    if(auth.isAuthenticated()) {
+      this.props.history.push("")
+    }
+  }
+
   handleLogin() {
     const { email, password } = this.state;
 
