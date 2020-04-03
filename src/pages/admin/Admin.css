@@ -1,0 +1,102 @@
+.page {
+    width: 100%;
+    height: 100vh;
+  }
+  
+  .banner {
+    background-image: url('../../assets/banner-2x.png');
+    background-repeat: no-repeat;
+    height: 30vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .content {
+    width: 100%;
+    height: 1200px;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 200px;
+  }
+  
+  .tool-container {
+    width: 75%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    border-radius: 15px;
+    margin-top: -80px;
+    padding: 80px;
+    padding-bottom: 100px;
+    background-color: whitesmoke;
+    box-shadow: 0px 70px 20px lightgrey;
+  }
+  
+  .tool-rows {
+    margin-left: 40px;
+    margin-right: 40px;
+    margin-top: -40px;
+    padding-top: 40px;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    overflow: scroll;
+  }
+
+  .tool {
+    width: 90%;
+    /* height: 200px; */
+    border-radius: 20px;
+    background-color: white;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 40px;
+    box-shadow: 0px 0px 20px lightgrey;
+    outline: none;
+    border: 0px solid white; 
+    padding: 0px;
+    /* cursor: pointer; */
+    display: inline-block;
+  }
+  
+  .fade-box {
+    width: 70%;
+    height: 70px;
+    box-shadow: 0px -50px 30px whitesmoke;
+    margin-top: -570px;
+    margin-left: -280px;
+    background-color: whitesmoke;
+    position: absolute;
+  }
+
+
+  .title-text {
+    text-align: center;
+    font-size: large;
+    font-family: sans-serif;
+    font-weight: 800;
+    margin-top: 5px;
+  }
+  
+  .tool-content {
+      margin-top: 20px;
+      margin-bottom: 20px;
+      display: block;
+  }
+
+  table {
+    /* font-family: arial, sans-serif; */
+    border-collapse: collapse;
+    width: 80%;
+    margin: 0 auto;
+  }
+  
+  td, th {
+    font-size: small;
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+  
+  
