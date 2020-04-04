@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 const BE_URL = "http://52a88f47.ngrok.io/app/"
+// const BE_URL = "http://localhost:8080/app/"
 
 export const getURL = () => BE_URL;
 

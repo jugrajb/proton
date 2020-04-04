@@ -1,6 +1,6 @@
 import React, {useState, useEffect, useCallback} from 'react';
 import './User.css';
-import { get, getURL } from '../../service/api';
+import { get, getURL, put } from '../../service/api';
 import {useDropzone} from 'react-dropzone'
 import auth from '../../service/auth';
 import axios from 'axios';
@@ -31,11 +31,23 @@ const UserProfile = () => {
       }      
     })
 
-    get(`/users/${auth.getLoggedUserUID()}`).then(res => {
+    get(`users/${auth.getLoggedUserUID()}`).then(res => {
       const data = res.data;
       setEmail(data.email)
       setPassword(data.password)
     })
+
+    
+  }
+
+
+  const handleSubmit = () => {
+    put(`users/${auth.getLoggedUserUID()}`, {email, password})
+    .then(res => console.log(res)).catch(err => console.log(err))
+  }
+
+  const handlePasswordChange = (id, val) => {
+    setPassword(val)
   }
 
   useEffect(() => {
@@ -78,7 +90,7 @@ const UserProfile = () => {
             label="password"
             type="password"
             value={password}
-            onChange={setPassword}
+            onChange={handlePasswordChange}
             disableEnter={true}
           />
           {auth.isUserAdmin() && <TextInput 
@@ -105,7 +117,7 @@ const UserProfile = () => {
             disableEnter={true}
             locked={true}
           />}
-          <button>
+          <button onClick={() => handleSubmit()}>
             Update
           </button>
         </div>
