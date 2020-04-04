@@ -155,11 +155,11 @@ class MainPage extends React.PureComponent {
 
     return [
       <Header key="header" {...this.props} />,
-      <div key="page" className="page">
-        <div className="banner">
+      <div key="main-page" className="main-page">
+        <div className="main-banner">
           <SearchBar />
         </div>
-        <div className="content">
+        <div className="main-content">
           <div className="card-container">
             <Filter
               submitFilter={this.handleFilterSubmit}

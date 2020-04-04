@@ -5,7 +5,6 @@ const BE_URL = "http://localhost:8080/app/"
 export const getURL = () => BE_URL;
 
 export async function post(url_data, data) {
-  console.log(url_data)
   try {
     const response = await axios.post(
       BE_URL + url_data, 

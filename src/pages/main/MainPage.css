@@ -1,10 +1,10 @@
-.page {
+.main-page {
   width: 100%;
   height: 100vh;
   margin-top: -2px;
 }
 
-.banner {
+.main-banner {
   background-image: url('../../assets/banner-2x.png');
   background-repeat: no-repeat;
   min-height: 55%;
@@ -13,7 +13,7 @@
   justify-content: center;
 }
 
-.content {
+.main-content {
   width: 100%;
   height: fit-content;
   display: flex;
