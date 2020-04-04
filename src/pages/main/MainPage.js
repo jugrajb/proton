@@ -77,10 +77,11 @@ class MainPage extends React.PureComponent {
 
   getCondition(attribute, comparator, value) {
     const comp = (comparator === "!=") ? "<>" : comparator;
+    const val = (comp === "LIKE") ? `%${value}%` : value;
     return {
       attribute : attribute,
       comparator : comp,
-      value : value
+      value : val
     };
   }
 
