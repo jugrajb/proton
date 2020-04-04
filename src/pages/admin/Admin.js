@@ -191,7 +191,10 @@ class Admin extends React.PureComponent {
         <form onSubmit={this.handleSearchUsers}>
           {fields.map((field, i) => {
             return (
-              <label key = {field}>
+              <label 
+                key={field}
+                style={{'margin-right':'10px'}}
+              >
                 <input
                   type='checkbox'
                   name={field}

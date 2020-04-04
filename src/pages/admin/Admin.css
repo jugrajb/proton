@@ -86,8 +86,8 @@
   }
 
   label {
-      margin-left: 10px;
-      margin-right: 10px;
+      /* margin-left: 10px;
+      margin-right: 10px; */
   }
 
   table {
@@ -120,12 +120,12 @@
 
   .search-button {
     border-radius: 10px;
-    border-color: #2980f1;
-    color: #2980f1;
+    border-color: #007aff;
+    color: #007aff;
   }
 
   .search-button:hover {
-    background-color: #2980f1;
+    background-color: #007aff;
     color: white;
     transition: 0.25s;
     cursor: pointer;
