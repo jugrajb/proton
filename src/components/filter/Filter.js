@@ -172,7 +172,7 @@ const Filter = props => {
         {getSortBy(props)}
         <br/>
         <br/>
-        <input className="search-button" type="submit" value="FILTER"/>
+        <input className="filter-button" type="submit" value="FILTER"/>
       </form>
     </div>
   )

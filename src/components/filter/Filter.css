@@ -24,7 +24,7 @@ label {
   width: 18%;
 }
 
-.search-button {
+.filter-button {
   font-size: medium;
   padding: 5px 10px;
   border-radius: 10px;
@@ -32,7 +32,7 @@ label {
   color: #007aff;
 }
 
-.search-button:hover {
+.filter-button:hover {
   background-color: #007aff;
   color: white;
   transition: 0.25s;
