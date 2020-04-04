@@ -1,10 +1,10 @@
 .card {
-  width: 280px;
-  height: 350px;
+  width: 230px;
+  height: 280px;
   border-radius: 20px;
   background-color: white;
-  margin-left: 80px;
-  margin-bottom: 80px;
+  margin-left: 60px;
+  margin-bottom: 40px;
   box-shadow: 0px 0px 20px lightgrey;
   outline: none;
   border: 0px solid white; 
@@ -13,14 +13,7 @@
 }
 
 .card:hover {
-  width: 283px;
-  height: 353px;
-  border-radius: 20px;
-  background-color: white;
-  margin-left: 80px;
   box-shadow: 0px 0px 40px black;
-  outline: none;
-  border: 0px solid white; 
   transition: 0.5s;
 }
 

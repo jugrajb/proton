@@ -1,56 +1,56 @@
 import axios from 'axios';
 
-const BE_URL = "http://localhost:8080/app/"
+const BE_URL = "http://52a88f47.ngrok.io/app/"
 
-export async function post(dest, data, urlParams = "") {
-  console.log(data)
+export const getURL = () => BE_URL;
+
+export async function post(url_data, data) {
+  console.log(url_data)
   try {
     const response = await axios.post(
-      BE_URL + dest + urlParams, 
+      BE_URL + url_data, 
       { ...data}
     )
 
     return response
   } catch (error) {
-    console.log(error)
+    console.log("post: ", error)
   }
 }
 
-export async function get(dest, urlParams = "") {
+export async function get(url_data) {
   try {
     const response = await axios.get(
-      BE_URL + dest + urlParams
+      BE_URL + url_data
     )
     return response
   } catch (error) {
-    console.log(error)
+    console.log("get: ", error)
   }
 }
 
 
-export async function put(dest, data, config) {
+export async function put(url_data, data) {
   try {
-    const response = await axios.post(
-      BE_URL + dest, 
-      { params: config },
+    const response = await axios.put(
+      BE_URL + url_data,
       { ...data }
     )
     return response
   } catch (error) {
-    console.log(error)
+    console.log("put: ", error)
   }
 }
 
 
-export async function del(dest, config) {
+export async function del(url_data) {
   try {
-    const response = await axios.post(
-      BE_URL + dest, 
-      { params: config }
+    const response = await axios.delete(
+      BE_URL + url_data
     )
     return response
   } catch (error) {
-    console.log(error)
+    console.log("delete: ", error)
   }
 }
 

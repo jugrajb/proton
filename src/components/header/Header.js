@@ -59,12 +59,26 @@ class Header extends React.PureComponent {
       )
   }
 
+  mainButton() {
+    if(this.state.auth )
+      return (
+        <button 
+          className="header-main" 
+          onClick={() => this.props.history.push("")} 
+          style={{ marginRight: "20px"}}
+        >
+          Main
+        </button>
+      )
+  }
+
   render() {
     return (
       <div className="header">
         <div className="header-container">
           <div className="header-text"> VGDB </div>
           <div className="header-button-container">
+            {this.mainButton()}
             {this.toolsButton()}
             {this.userButton()}
             {this.logoutButton()}  

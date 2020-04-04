@@ -1,48 +1,51 @@
 import React from 'react';
 import './MainPage.css';
-import auth from '../../service/auth';
 import SearchBar from '../../components/search-bar/SearchBar';
 import Card from '../../components/card/Card';
 import Filter from '../../components/filter/Filter';
-import godOfWar from '../../assets/god_of_war_4.jpg';
-import halo1 from '../../assets/halo_1.jpg';
-import halo2 from '../../assets/halo_2.png';
-import halo3 from '../../assets/halo_3.png';
-import cod from '../../assets/cod.jpg';
-import cod4 from '../../assets/cod_4.jpg';
-import massEffect from '../../assets/mass_effect.jpg';
-import massEffect2 from '../../assets/mass_effect_2.png';
-import uncharted from '../../assets/uncharted_2.jpg';
-import uncharted2 from '../../assets/uncharted.jpg';
 import Header from '../../components/header/Header';
-
-import { get } from '../../service/api'
+import { get } from '../../service/api';
+import PageTabs from '../../components/page-tabs/PageTabs';
 
 class MainPage extends React.PureComponent {
   constructor(props) {
     super(props)
 
     this.state = {
-      games: []
+      games: [[]],
+      page: 0,
     }
 
     this.handleGameRoute = this.handleGameRoute.bind(this)
+    this.handlePageChange = this.handlePageChange.bind(this)
   }
 
   componentDidMount() {
-    get('video-game')
-    .then(
-      resp => this.setState({ games: resp.data })
+    get('game-card').then(
+      resp => this.formatGames(resp.data, 6)
     )
   }
 
+  formatGames(res, size) {
+    let result = [];
+
+    while(res.length > 0) {
+      result.push(res.splice(0, size))
+    }
+
+    this.setState({ games: result })
+  }
+
   handleGameRoute(id) {
-    const url = "/game/" + id
-    this.props.history.push(url)
+    this.props.history.push(`/game/${id}`)
+  }
+
+  handlePageChange(i) {
+    this.setState({ page: i})
   }
 
   render() {
-    const { games } = this.state;
+    const { games, page } = this.state;
 
     return [
       <Header key="header" {...this.props} />,
@@ -54,23 +57,18 @@ class MainPage extends React.PureComponent {
           <div className="card-container">
             <Filter/>
             <div className="card-rows">
-              {games.map((game, i) => 
+              {games.length > 0 && games[page].map(game =>
                 <Card 
                   key={game.gid} 
                   game={game}
                   onClick={this.handleGameRoute}
                 />
               )}
-              {/* <Card id="1" cardImage={godOfWar}/>
-              <Card id="2" cardImage={massEffect}/>
-              <Card id="3" cardImage={halo1}/>
-              <Card id="4" cardImage={halo2}/>
-              <Card id="5" cardImage={halo3}/>
-              <Card id="6" cardImage={cod}/>
-              <Card id="7" cardImage={cod4}/>
-              <Card id="8" cardImage={massEffect2}/>
-              <Card id="9" cardImage={uncharted}/> */}
-              <div className="fade-box"/>
+              <PageTabs
+                items={games}
+                currPage={page}
+                onClickHandler={this.handlePageChange}
+              />
             </div>
           </div>
         </div>

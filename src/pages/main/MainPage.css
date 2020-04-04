@@ -1,12 +1,13 @@
 .page {
   width: 100%;
   height: 100vh;
+  margin-top: -2px;
 }
 
 .banner {
   background-image: url('../../assets/banner-2x.png');
   background-repeat: no-repeat;
-  height: 50vh;
+  min-height: 55%;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -14,15 +15,15 @@
 
 .content {
   width: 100%;
-  height: 1200px;
+  height: fit-content;
   display: flex;
   justify-content: center;
-  margin-bottom: 200px;
+  margin-bottom: 150px;
 }
 
 .card-container {
   width: 75%;
-  height: 100%;
+  height: fit-content;
   display: flex;
   flex-direction: row;
   border-radius: 15px;
@@ -34,22 +35,8 @@
 }
 
 .card-rows {
-  margin-left: 40px;
-  margin-top: -40px;
-  padding-top: 40px;
-  width: 100%;
-  height: 100%;
-  overflow: scroll;
+  margin-left: 80px;
+  width: 80%;
+  height: 80%;
+  text-align: left;
 }
-
-.fade-box {
-  width: 70%;
-  height: 70px;
-  box-shadow: 0px -50px 30px whitesmoke;
-  margin-top: -570px;
-  margin-left: -280px;
-  background-color: whitesmoke;
-  position: absolute;
-}
-
-

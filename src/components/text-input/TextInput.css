@@ -8,3 +8,7 @@
   margin-top: 2px;
   font-size: medium;
 }
+
+.input:read-only {
+  background-color: lightgrey !important;
+}

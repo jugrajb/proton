@@ -2,14 +2,18 @@ class Auth {
   constructor() {
     this.authenticated = localStorage.getItem('authenticated') || 'not_authenticated';
     this.admin = localStorage.getItem('admin') || 'non_admin';
+    this.uid = parseInt(localStorage.getItem('uid')) || -1;
 
     this.isUserAdmin = this.isUserAdmin.bind(this)
     this.isAuthenticated = this.isAuthenticated.bind(this)
   }
 
-  login(admin, cb) {
+  login(admin, uid, cb) {
     localStorage.setItem('authenticated', 'authenticated')
     this.authenticated = 'authenticated';
+
+    localStorage.setItem('uid', uid)
+    this.uid = uid;
     
     if(admin) {
       localStorage.setItem('admin', 'admin')
@@ -27,7 +31,12 @@ class Auth {
     this.isAdmin = 'not_admin';
     localStorage.removeItem('authenticated')
     localStorage.removeItem('admin')
+    localStorage.removeItem('uid')
     cb()
+  }
+
+  getLoggedUserUID() {
+    return this.uid;
   }
 
   isUserAdmin() {

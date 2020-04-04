@@ -1,14 +1,6 @@
 .header-auth {
   width: 100px;
   border-radius: 40px;
-  border: 2px solid #f03434;
-  outline: none;
-  font-size: small;
-}
-
-.header-auth:hover {
-  width: 100px;
-  border-radius: 40px;
   background-color: #f03434;
   border: 2px solid #f03434;
   outline: none;
@@ -19,14 +11,6 @@
 }
 
 .header-user {
-  width: 100px;
-  border-radius: 40px;
-  border: 2px solid #19b5fe;
-  outline: none;
-  font-size: small;
-}
-
-.header-user:hover {
   width: 100px;
   border-radius: 40px;
   background-color: #19b5fe;
@@ -41,14 +25,6 @@
 .header-admin {
   width: 100px;
   border-radius: 40px;
-  border: 2px solid #29f1c3;
-  outline: none;
-  font-size: small;
-}
-
-.header-admin:hover {
-  width: 100px;
-  border-radius: 40px;
   background-color: #29f1c3;
   border: 2px solid #29f1c3;
   outline: none;
@@ -58,33 +34,24 @@
   font-size: small;
 }
 
+.header-main {
+  width: 100px;
+  border-radius: 40px;
+  background-color: #f89406;
+  border: 2px solid #f89406;
+  outline: none;
+  cursor: pointer;
+  color: white;
+  transition: 0.25s;
+  font-size: small;
+}
+
 .header-button-container {
-  width: 350px;
+  width: fit-content;
   display: flex;
   justify-content: flex-end;
 }
 
-.header-user button:hover {
-  width: 100px;
-  border-radius: 40px;
-  background-color: #f03434;
-  outline: none;
-  cursor: pointer;
-  color: white;
-  transition: 0.25s;
-  font-size: small;
-}
-
-.header-admin button:hover {
-  width: 100px;
-  border-radius: 40px;
-  background-color: #f03434;
-  outline: none;
-  cursor: pointer;
-  color: white;
-  transition: 0.25s;
-  font-size: small;
-}
 
 .header-text {
   text-align: center;
@@ -95,7 +62,9 @@
 }
 
 .header {
-  padding: 20px
+  padding: 20px;
+  background-color: #191919;
+  color: white;
 }
 
 .header-container {

@@ -10,7 +10,9 @@ class TextInput extends Component {
     type: PropTypes.string,
     label: PropTypes.string,
     onChange: PropTypes.func,
-    style: PropTypes.object
+    style: PropTypes.object,
+    disableEnter: PropTypes.bool,
+    locked: PropTypes.bool
   };
 
   static defaultProps = {
@@ -18,7 +20,9 @@ class TextInput extends Component {
     value: '',
     label: '',
     type: "text",
-    onChange: () => ''
+    locked: false,
+    onChange: () => '',
+    disableEnter: false
   };
 
   constructor(props) {
@@ -40,14 +44,20 @@ class TextInput extends Component {
   }
 
   handleKey(e) {
-    if(e.keyCode === 13) {
+    if(e.keyCode === 13 && !this.props.disableEnter) {
       this.setState({ value: "" });
     }
   }
 
+  componentDidUpdate(props, prevProps) {
+    if(props.label !== prevProps.label) {
+      this.setState({label: props.label})
+    }
+  }
+
   render() {
-    const { value, label } = this.state;
-    const { id, type } = this.props;
+    const { value } = this.state;
+    const { id, type, label, locked } = this.props;
 
     return (
       <div style={this.props.style}>
@@ -61,6 +71,7 @@ class TextInput extends Component {
           onKeyDown={e => this.handleKey(e)}
           onFocus={() => this.setState({ focussed: true })}
           onBlur={() => this.setState({ focussed: false })}
+          readOnly={locked}
         />
       </div>
     )

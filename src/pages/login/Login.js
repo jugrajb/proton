@@ -20,6 +20,7 @@ class Login extends React.PureComponent {
 
     this.handleEmailChange = this.handleEmailChange.bind(this);
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
+    this.handleUsernameChange = this.handleUsernameChange.bind(this)
   }
 
   componentDidMount() {
@@ -32,17 +33,18 @@ class Login extends React.PureComponent {
     const { email, password } = this.state;
 
 
-    post("auth", { email, password }, "").then(
+    post("auth", { email, password }).then(
       resp => {
-        if(resp.data === 0) {
+        console.log("resp ", resp.data)
+        if(resp.data.code === 0) {
           toast.error("Invalid Login Credentials")
-        } else if(resp.data === 1){
+        } else if(resp.data.code === 1){
           toast.success("Logged In")
-          auth.login(false, () => this.props.history.push(""))
+          auth.login(false, resp.data.user.uid, () => this.props.history.push(""))
           
-        } else if(resp.data === 2){
+        } else if(resp.data.code === 2){
           toast.success("Logged In As Admin")
-          auth.login(true, () => this.props.history.push(""))
+          auth.login(true, resp.data.user.uid, () => this.props.history.push(""))
         }
       }
     );
@@ -50,7 +52,19 @@ class Login extends React.PureComponent {
   }
 
   handleSignup() {
+    const { email, username, password } = this.state;
 
+    console.log(this.state)
+    post(`auth/${username}`, { email, password }).then(
+      resp => {
+        if(resp.data === 0) {
+          toast.error("Error, in sign up")
+        } else if(resp.data === 1) {
+          toast.success("Sign Up Completed, Please Login")
+          this.setState({tab: 1})
+        }
+      }
+    )
   }
 
   handleEmailChange(id, val) {
@@ -61,16 +75,22 @@ class Login extends React.PureComponent {
     this.setState({ password: val})
   }
 
+  handleUsernameChange(id, val) {
+    this.setState({ username: val })
+  }
+
   login() {
     const { email, password } = this.state;
 
     return (
       <div>
+        <h1>Login</h1>
         <TextInput 
           id="email"
           label="email"
           value={email}
           onChange={this.handleEmailChange}
+          disableEnter={true}
         />
         <TextInput 
           id="password"
@@ -78,6 +98,7 @@ class Login extends React.PureComponent {
           type="password"
           value={password}
           onChange={this.handlePasswordChange}
+          disableEnter={true}
         />
         <button onClick={() => this.handleLogin(this.state)}>
           Submit
@@ -95,19 +116,25 @@ class Login extends React.PureComponent {
           id="email"
           label="email"
           value={email}
+          onChange={this.handleEmailChange}
+          disableEnter={true}
         />
         <TextInput 
           id="username"
           label="username"
           value={username}
+          onChange={this.handleUsernameChange}
+          disableEnter={true}
         />
         <TextInput 
           id="password"
           label="password"
           type="password"
           value={password}
+          onChange={this.handlePasswordChange}
+          disableEnter={true}
         />
-        <button>
+        <button onClick={() => this.handleSignup(this.state)}>
           Submit
         </button>
     </div>

@@ -1,5 +1,5 @@
 .login-page {
-  background: url("../../assets/login.gif") no-repeat center center fixed;
+  background: url("../../assets/login-2.gif") no-repeat center center fixed;
   width: 100vw;
   height: 100vh;
   background-size: cover; 
@@ -80,7 +80,7 @@ body {
   flex-direction: column;
   position: absolute;
   top: 50%;
-  left: 50%;
+  left: 30%;
   transform: translate(-50%, -50%);
 } 
 
@@ -89,6 +89,8 @@ body {
   width: 100%;
   flex-direction: row;
   justify-content: space-evenly;
+  flex-flow: wrap-reverse;
+  height: 60px;
 }
 
 .login-tabs button[type="login-2"] {
@@ -97,32 +99,16 @@ body {
   margin: 0px auto;
   text-align: center;
   border: 2px solid #f03434;
-  padding: 14px 40px;
-  width: 50%;
-  outline: none;
-  color: white;
-  transition: 0.35s;
-  cursor: pointer;
-  border-radius: 0px;
-  border-top-left-radius: 24px;
-}
-
-.login-tabs button[type="login-2"]:hover {
-  background: none;
-  display: block;
-  margin: 0px auto;
-  text-align: center;
-  border: 2px solid #f03434;
   background-color: #f03434;
   padding: 14px 40px;
   width: 50%;
+  height: 40px;
   outline: none;
   color: white;
   transition: 0.35s;
   cursor: pointer;
   border-radius: 0px;
   border-top-left-radius: 24px;
-  font-weight: 300px;
 }
 
 .login-tabs button[type="login-1"] {
@@ -134,12 +120,14 @@ body {
   background-color: #f03434;
   padding: 14px 40px;
   width: 50%;
+  height: 60px;
   outline: none;
   color: white;
   transition: 0.35s;
   cursor: pointer;
   border-radius: 0px;
   border-top-left-radius: 24px;
+  border-top-right-radius: 24px;
 }
 
 .login-tabs button[type="signup-1"] {
@@ -148,8 +136,10 @@ body {
   margin: 0px auto;
   text-align: center;
   border: 2px solid #19b5fe;
+  background-color: #19b5fe;
   padding: 14px 40px;
   width: 50%;
+  height: 40px;
   outline: none;
   color: white;
   transition: 0.35s;
@@ -167,27 +157,12 @@ body {
   background-color: #19b5fe;
   padding: 14px 40px;
   width: 50%;
+  height: 60px;
   outline: none;
   color: white;
   transition: 0.35s;
   cursor: pointer;
   border-radius: 0px;
   border-top-right-radius: 24px;
-}
-
-.login-tabs button[type="signup-1"]:hover {
-  background: none;
-  display: block;
-  margin: 0px auto;
-  text-align: center;
-  border: 2px solid #19b5fe;
-  background-color: #19b5fe;
-  padding: 14px 40px;
-  width: 50%;
-  outline: none;
-  color: white;
-  transition: 0.35s;
-  cursor: pointer;
-  border-radius: 0px;
-  border-top-right-radius: 24px;
+  border-top-left-radius: 24px;
 }

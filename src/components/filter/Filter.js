@@ -3,7 +3,9 @@ import './Filter.css';
 
 const Filter = props => {
   return (
-    <div className="filter"/>
+    <div className="filter">
+      <h3>Fitler Games</h3>
+    </div>
   )
 }
 
