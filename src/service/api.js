@@ -54,3 +54,13 @@ export async function del(url_data) {
   }
 }
 
+export async function deleteID(dest, urlParams = "") {
+  try {
+    const response = await axios.delete(
+      BE_URL + dest + urlParams
+    )
+    return response
+  } catch (error) {
+    console.log(error)
+  }
+}
