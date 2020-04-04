@@ -1,6 +1,6 @@
 import React from 'react' 
 import './Game.css'
-import { get, getURL, post } from '../../service/api'
+import { get, getURL, post, del } from '../../service/api'
 import Header from '../../components/header/Header'
 import Label from '../../components/label/Label'
 import auth from '../../service/auth'
@@ -231,6 +231,12 @@ export class Game extends React.PureComponent {
     .catch(err => console.log(err))
   }
 
+  deleteReview(rid) {
+    del(`user-review/${rid}`)
+    .then(() => this.updateReviews())
+    .catch(err => console.log(err))
+  }
+
   render() {
     const { 
       game, platforms, awards, publisher, 
@@ -239,7 +245,6 @@ export class Game extends React.PureComponent {
       criticReviews, userReviews
     } = this.state;
 
-    console.log(this.state)
     return [
       <Header key="header" {...this.props} />,
       <div key="game-page" className="game-page">
@@ -373,29 +378,52 @@ export class Game extends React.PureComponent {
             <div className="game-row-3">
               <div className="user-review">
                 <h3>User Reviews</h3>
-                {userReviews.map((review, i) => (
+                {userReviews.map((item, i) => (
                   <div key={`ur${i}`} className="c-review">
-                    <Label left="Title" right={review.title}/>
-                    <Label left="Score" right={review.score}/>
-                    <Label left="Date" right={review.date}/>
+                    <div className="game-profile">
+                      {item.user.profileImage ? 
+                        <img 
+                          className="game-profile-image"
+                          src={`${getURL()}general-user/${item.user.uid}/image/download`}
+                          alt="profileimage"
+                        /> 
+                      :
+                        <img 
+                          className="game-profile-image"
+                          src="https://www.securities-services.societegenerale.com/uploads/tx_bisgbio/default-profile.png" 
+                          alt="profileimage"
+                        />
+                      }
+                      <p>{item.user.username}</p>
+                    </div>
+                    <Label left="Title" right={item.review.title}/>
+                    <Label left="Score" right={item.review.score}/>
+                    <Label left="Date" right={item.review.date}/>
                     <br/>
                     <br/>
                     <b>Review:</b>
                     <br/>
-                    {review.review}
-                    <div className="game-profile">
-                      <img className="game-profile-image" src="" alt="image"/>
-                    </div>
+                    {item.review.review}
+                    <br/>
+                    <br/>
+                    {auth.isUserAdmin() &&
+                      <button 
+                        className="delete-button"
+                        onClick={() => this.deleteReview(item.review.rid)}
+                      >
+                        Delete
+                      </button>
+                    }
                   </div>
                 ))}
               </div>
             </div>
-            <div className="game-row-3">
+            {!auth.isUserAdmin() && <div className="game-row-3">
               <div className="user-review">
                 <h3>Add User Review</h3>
                 <AddUserReview {...this.props} updateReview={this.updateReviews} />
               </div>
-            </div>
+            </div>}
           </div>
         </div>
       </div>

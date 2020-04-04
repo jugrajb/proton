@@ -16,7 +16,7 @@ class PageTabs extends React.PureComponent {
 
   render() {
     const { items, currPage, onClickHandler } = this.props;
-    console.log(this.props)
+
     return (
       <div className="page-tabs">
         {items.map((item, i) => 

@@ -83,7 +83,7 @@
 
 .game-awards {
   width: 70%;
-  height: 280px;
+  height: 260px;
   margin-left: 40px;
   background-color: white;
   border-radius: 20px;
@@ -231,13 +231,18 @@
 }
 
 .game-profile {
-  position: absolute;
-  height: 80px;
-  width: 300px;
+  height: fit-content;
+  width: 200px;
   background-color: lightgrey;
-  margin-left: 47%;
   border-radius: 20px;
-  margin-top: -50px;
+  margin-bottom: 20px;
+  display: flex;
+  padding: 10px;
+}
+
+.game-profile p {
+  margin-left: 20px;
+  margin-top: 20px;
 }
 
 .game-profile-image {
