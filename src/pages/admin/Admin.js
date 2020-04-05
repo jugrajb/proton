@@ -18,16 +18,16 @@ class Admin extends React.PureComponent {
         'username': false
       },
       user_filter_response: [],
-      best_users_response: []
+      best_users_response: [],
+      password_changes_response: []
     }
-    // delete ao
+
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleDeleteAO = this.handleDeleteAO.bind(this);
-    // search user filter
     this.handleCheckboxChange = this.handleCheckboxChange.bind(this);
     this.handleSearchUsers = this.handleSearchUsers.bind(this);
-    // get best users
     this.handleBestUsers = this.handleBestUsers.bind(this);
+    this.handlePasswordChanges = this.handlePasswordChanges.bind(this);
   }
 
   componentDidMount() {
@@ -222,13 +222,15 @@ class Admin extends React.PureComponent {
     event.preventDefault();
     get('best-users/').then((res) => {
       this.setState({best_users_response : res.data});
+    }).catch((err) => {
+      console.log(err);
     })
   }
 
-  getBestUsers() {
+  getBestReviewers() {
     return (
       <div className='tool'>
-        <div className="title-text">Get Best Users</div>
+        <div className="title-text">Get Best Reviewers</div>
         <div className="tool-content">
         <input 
           className='search-button'
@@ -239,6 +241,36 @@ class Admin extends React.PureComponent {
         </div>
         <div className="tool-content">
           {this.renderTable(this.state.best_users_response)}
+        </div>
+      </div>
+    )
+  }
+
+  // Password Changes log
+
+  handlePasswordChanges(event) {
+    event.preventDefault();
+    get('password-change/').then((res) => {
+      this.setState({password_changes_response : res.data});
+    }).catch((err) => {
+      console.log(err);
+    })
+  }
+
+  getPasswordChanges() {
+    return (
+      <div className='tool'>
+        <div className="title-text">Password Change Log</div>
+        <div className="tool-content">
+        <input 
+          className='search-button'
+          type="submit" 
+          value="SEARCH"
+          onClick={this.handlePasswordChanges}
+          />
+        </div>
+        <div className="tool-content">
+          {this.renderTable(this.state.password_changes_response)}
         </div>
       </div>
     )
@@ -256,7 +288,8 @@ class Admin extends React.PureComponent {
             <div className="tool-rows">
               {this.deleteAwardOrganization()}
               {this.searchUsersFilter()}
-              {this.getBestUsers()}
+              {this.getBestReviewers()}
+              {this.getPasswordChanges()}
             </div>
           </div>
         </div>
