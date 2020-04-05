@@ -142,8 +142,11 @@ function MyDropzone({ uid }) {
       {
          headers: { "Content-Type": "multipart/form-data" }
       }
+    ).then(
+      () => toast.success("Profile Image Uploaded")
     ).catch(err => console.log(err))
   }, [uid])
+  
   const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})
 
   return (

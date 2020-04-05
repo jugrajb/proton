@@ -10,6 +10,7 @@ class Admin extends React.PureComponent {
 
     this.state = {
       ao_delete_oid: 0,
+      ao_info: [],
       ao_delete_info: [],
       user_fields: {
         'uid': false,
@@ -36,6 +37,9 @@ class Admin extends React.PureComponent {
   }
 
   componentDidMount() {
+    get(`award-organization`)
+    .then(res => this.setState({ao_delete_info: res.data}))
+    .catch(err => console.log(err))
   }
 
   // renders an html table from a list of json key-value pairs
@@ -77,6 +81,8 @@ class Admin extends React.PureComponent {
     this.setState({ao_delete_oid: value});
   }
 
+  
+
   handleDeleteAO(event) {
     event.preventDefault();
     let num_tuples = {};
@@ -101,6 +107,7 @@ class Admin extends React.PureComponent {
       ao_get = get('award-organization/');
       vga_get = get('video-game-award/');
       awarded_get = get('awarded/');
+
       return Promise.all([ao_get, vga_get, awarded_get]);
     })
     .then((res) => {
@@ -117,6 +124,8 @@ class Admin extends React.PureComponent {
           'Number of Tuples Removed' : num_tuples[key]
         });
       });
+
+      this.setState({ ao_info: res[0].data })
 
       // save key-value pairs of tuples deleted in state
       this.setState({ao_delete_info : ao_delete_info})
@@ -150,6 +159,7 @@ class Admin extends React.PureComponent {
         </form>
       </div>
       <div className="tool-content">
+        {this.renderTable(this.state.ao_info)}
         {this.renderTable(this.state.ao_delete_info)}
       </div>
     </div>
