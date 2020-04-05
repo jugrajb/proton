@@ -2,11 +2,11 @@ import React from 'react';
 import './Filter.css';
 
 const style = {
-  number : {'width': '25%', 'margin-left':'10px'},
-  textarea : {'width': '25%', 'margin-left':'10px'},
-  date : {'width': '40%', 'margin-left':'10px'},
-  select: {'width': '50%', 'margin-left':'10px'},
-  sort: {'width': '25%', 'margin-left':'10px'},
+  number : {width: '25%', marginLeft:'10px'},
+  textarea : {width: '25%', marginLeft:'10px'},
+  date : {width: '40%', marginLeft:'10px'},
+  select: {width: '50%', marginLeft:'10px'},
+  sort: {width: '25%', marginLeft:'10px'},
 }
 
 const getConditions = (props) => {
@@ -19,7 +19,7 @@ const getConditions = (props) => {
         checked={props.require === "ANY"}
         onChange={props.handleRequireChange}
       />
-      <label for="any">ANY</label>
+      <label htmlFor="any">ANY</label>
       <input 
         type="radio" 
         id="all" 
@@ -27,12 +27,12 @@ const getConditions = (props) => {
         checked={props.require === "ALL"}
         onChange={props.handleRequireChange}
       />
-      <label for="all">ALL</label><br/><br/>
+      <label htmlFor="all">ALL</label><br/><br/>
 
       <input 
         type="checkbox" id="gid_check" value="gid"
         onChange={props.handleColumnCheck} checked={props.gid_check}/>
-      <label className="conditions" for="gid_check">GID</label>
+      <label className="conditions" htmlFor="gid_check">GID</label>
       <select 
         className="comparator" 
         id="gid_comparator" 
@@ -53,10 +53,10 @@ const getConditions = (props) => {
         onChange={props.handleFormChange}
       />
       <br/>
-      <input 
+      {/* <input 
         type="checkbox" id="title_check" value="title" 
         onChange={props.handleColumnCheck} checked={props.title_check}/>
-      <label className="conditions" for="title_check">Title</label>
+      <label className="conditions" htmlFor="title_check">Title</label>
       <select 
         className="comparator" 
         id="title_comparator" 
@@ -72,11 +72,11 @@ const getConditions = (props) => {
         value={props.title_value}
         onChange={props.handleFormChange}
       />
-      <br/>
+      <br/> */}
       <input 
         type="checkbox" id="releaseDate_check" value="releaseDate" 
         onChange={props.handleColumnCheck} checked={props.releaseDate_check}/>
-      <label className="conditions" for="releaseDate_check">Released</label>
+      <label className="conditions" htmlFor="releaseDate_check">Released</label>
       <select 
         className="comparator" 
         id="releaseDate_comparator" 
@@ -100,7 +100,7 @@ const getConditions = (props) => {
       <input 
         type="checkbox" id="genre_check" value="genre" 
         onChange={props.handleColumnCheck} checked={props.genre_check}/>
-      <label className="conditions" for="genre_check">Genre</label>
+      <label className="conditions" htmlFor="genre_check">Genre</label>
       <select 
         className="comparator" 
         id="genre_comparator" 
@@ -126,7 +126,7 @@ const getConditions = (props) => {
 const getSortBy = (props) => {
   return Array(4).fill().map((_,i) => {
     return (
-      <div>
+      <div key={i}>
         {/* <input
           id={`sort_${key}_check`}
           type="checkbox"
@@ -172,7 +172,7 @@ const Filter = props => {
         {getSortBy(props)}
         <br/>
         <br/>
-        <input className="filter-button" type="submit" value="FILTER"/>
+        <input className="filter-button" type="submit" value="filter"/>
       </form>
     </div>
   )

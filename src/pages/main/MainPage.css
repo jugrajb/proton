@@ -13,6 +13,12 @@
   justify-content: center;
 }
 
+.main-search-area {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .main-content {
   width: 100%;
   height: fit-content;
@@ -22,7 +28,7 @@
 }
 
 .card-container {
-  width: 75%;
+  width: 80%;
   height: fit-content;
   display: flex;
   flex-direction: row;
@@ -35,7 +41,7 @@
 }
 
 .card-rows {
-  margin-left: 80px;
+  margin-left: 40px;
   width: 80%;
   height: 80%;
   text-align: left;

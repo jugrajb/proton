@@ -26,7 +26,7 @@ class MainPage extends React.PureComponent {
       title_comparator: "=",
       title_value: "",
       releaseDate_comparator: "<",
-      releaseDate_value: null,
+      releaseDate_value: "",
       genre_comparator: "=",
       genre_value: "FPS",
 
@@ -38,6 +38,11 @@ class MainPage extends React.PureComponent {
       sort_2_dir: "ASC",
       sort_3_dir: "ASC",
       sort_4_dir: "ASC",
+
+      userBest: 0,
+      criticBest: 0,
+
+      searchTitle: ""
     }
 
     this.handleGameRoute = this.handleGameRoute.bind(this)
@@ -47,12 +52,22 @@ class MainPage extends React.PureComponent {
     this.handleRequireChange = this.handleRequireChange.bind(this)
     this.handleColumnCheck = this.handleColumnCheck.bind(this)
     this.handleFormChange = this.handleFormChange.bind(this);
+
+    this.onEnter = this.onEnter.bind(this)
   }
 
   componentDidMount() {
     get('game-card').then(
       resp => this.formatGames(resp.data, 6)
     )
+
+    get(`summary-score/user/best`)
+    .then(res => this.setState({ userBest: res.data.gid}))
+    .catch(err => console.log(err))
+
+    get(`summary-score/critic/best`)
+    .then(res => this.setState({ criticBest: res.data.gid}))
+    .catch(err => console.log(err))
   }
 
   formatGames(res, size) {
@@ -150,14 +165,42 @@ class MainPage extends React.PureComponent {
     this.setState(stateObj);
   }
 
+  onEnter(e) {
+    this.setState({ title_comparator: "LIKE", title_check: true}, () => {
+      this.handleFilterSubmit(e)
+    })
+  }
+
   render() {
-    const { games, page } = this.state;
+    const { games, page, userBest, criticBest } = this.state;
 
     return [
       <Header key="header" {...this.props} />,
       <div key="main-page" className="main-page">
         <div className="main-banner">
-          <SearchBar />
+          <div className="main-search-area ">
+            <SearchBar
+              onKeyDown={this.onEnter}
+              value={this.state.title_value}
+              onChange={(id, val) => this.setState({ title_value: val})}
+            />
+            <div style={{marginTop: "20px"}}>
+              <button 
+                className="header-user"
+                style={{width: "150px", height: "50px"}}
+                onClick={() => this.props.history.push(`/game/${criticBest}`)}
+              >
+                Featured Critic Game
+              </button>
+              <button
+                className="header-auth" 
+                style={{width: "150px", height: "50px", marginLeft: "20px"}}
+                onClick={() => this.props.history.push(`/game/${userBest}`)}
+              >
+                  Feature User Game
+              </button>
+            </div>
+          </div>
         </div>
         <div className="main-content">
           <div className="card-container">

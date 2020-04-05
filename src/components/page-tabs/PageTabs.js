@@ -21,6 +21,7 @@ class PageTabs extends React.PureComponent {
       <div className="page-tabs">
         {items.map((item, i) => 
           <button 
+            key={i}
             type={currPage === i ? "selected" : ""}
             onClick={() => onClickHandler(i)}
           >

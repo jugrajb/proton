@@ -10,6 +10,7 @@ class TextInput extends Component {
     type: PropTypes.string,
     label: PropTypes.string,
     onChange: PropTypes.func,
+    onKeyDown: PropTypes.func,
     style: PropTypes.object,
     disableEnter: PropTypes.bool,
     locked: PropTypes.bool
@@ -22,6 +23,7 @@ class TextInput extends Component {
     type: "text",
     locked: false,
     onChange: () => '',
+    onKeyDown: () => {},
     disableEnter: false
   };
 
@@ -45,6 +47,7 @@ class TextInput extends Component {
 
   handleKey(e) {
     if(e.keyCode === 13 && !this.props.disableEnter) {
+      this.props.onKeyDown(e)
       this.setState({ value: "" });
     }
   }
