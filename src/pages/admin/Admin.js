@@ -290,13 +290,17 @@ class Admin extends React.PureComponent {
     if (r1 && r2) {
       get(['natural-join', r1, r2].join('/'))
       .then((res) => {
-        if (res.data !== null) {
+        if (res.data) {
           this.setState({natural_join_response : res.data});
+        } else {
+          this.setState({natural_join_response : []});
         }
       })
       .catch((err) => {
         console.log(err);
       });
+    } else {
+      this.setState({natural_join_response : []});
     }
   }
 
