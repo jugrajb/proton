@@ -35,7 +35,6 @@ class Login extends React.PureComponent {
 
     post("auth", { email, password }).then(
       resp => {
-        console.log("resp ", resp.data)
         if(resp.data.code === 0) {
           toast.error("Invalid Login Credentials")
         } else if(resp.data.code === 1){
@@ -54,7 +53,6 @@ class Login extends React.PureComponent {
   handleSignup() {
     const { email, username, password } = this.state;
 
-    console.log(this.state)
     post(`auth/${username}`, { email, password }).then(
       resp => {
         if(resp.data === 0) {

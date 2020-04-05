@@ -6,6 +6,8 @@ import auth from '../../service/auth';
 import axios from 'axios';
 import Header from '../../components/header/Header';
 import TextInput from '../../components/text-input/TextInput';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const UserProfile = () => {
@@ -43,7 +45,8 @@ const UserProfile = () => {
 
   const handleSubmit = () => {
     put(`users/${auth.getLoggedUserUID()}`, {email, password})
-    .then(res => console.log(res)).catch(err => console.log(err))
+    .then(() => toast.success("Changed Password"))
+    .catch(err => console.log(err))
   }
 
   const handlePasswordChange = (id, val) => {

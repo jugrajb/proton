@@ -1,5 +1,5 @@
 .filter {
-  width: 35%;
+  width: 32%;
   height: 500px;
   border-radius: 20px;
   background-color: white;
@@ -30,6 +30,7 @@ label {
   border-radius: 10px;
   border-color: #007aff;
   color: #007aff;
+  outline: none;
 }
 
 .filter-button:hover {

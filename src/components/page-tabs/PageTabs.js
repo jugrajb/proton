@@ -16,11 +16,12 @@ class PageTabs extends React.PureComponent {
 
   render() {
     const { items, currPage, onClickHandler } = this.props;
-    console.log(this.props)
+
     return (
       <div className="page-tabs">
         {items.map((item, i) => 
           <button 
+            key={i}
             type={currPage === i ? "selected" : ""}
             onClick={() => onClickHandler(i)}
           >

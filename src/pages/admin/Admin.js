@@ -1,9 +1,7 @@
 import React from 'react';
 import Header from '../../components/header/Header';
 import './Admin.css';
-import Card from '../../components/card/Card';
-import TextInput from '../../components/text-input/TextInput';
-import { del, deleteID, post } from '../../service/api';
+import { deleteID, post } from '../../service/api';
 import { get } from '../../service/api';
 
 class Admin extends React.PureComponent {

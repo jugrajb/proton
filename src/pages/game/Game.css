@@ -1,9 +1,252 @@
-.game-page img {
+.game-page {
   width: 100%;
-  height: 30%;
+  height: 100vh;
+  margin-top: -2px;
+}
+
+.game-banner {
+  background-image: url('../../assets/banner-2x.png');
+  background-repeat: no-repeat;
+  height: 33vh;
+  width: 100%;
 }
 
 .game-content {
   width: 100%;
-  height: 70%;
+  height: fit-content;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 150px;
+}
+
+.game-container {
+  width: 75%;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  border-radius: 15px;
+  margin-top: -80px;
+  padding: 80px;
+  padding-bottom: 100px;
+  background-color: whitesmoke;
+  box-shadow: 0px 70px 20px lightgrey;
+}
+
+.game-row-1 {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.game-card {
+  width: 230px;
+  height: 280px;
+  border-radius: 20px;
+  background-color: white;
+  margin-left: 60px;
+  margin-bottom: 40px;
+  box-shadow: 0px 0px 20px lightgrey;
+  outline: none;
+  border: 0px solid white; 
+  padding: 0px;
+}
+
+.game-info {
+  width: 70%;
+  height: 240px;
+  margin-left: 40px;
+  background-color: white;
+  border-radius: 20px;
+  box-shadow: 0px 0px 20px lightgrey;
+  border: 0px solid white; 
+  padding: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.left-info {
+  width: 42%;
+  text-align: left;
+}
+
+.right-info {
+  width: 42%;
+  text-align: left;
+}
+
+.game-row-2 {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+}
+
+.game-awards {
+  width: 70%;
+  height: 260px;
+  margin-left: 40px;
+  background-color: white;
+  border-radius: 20px;
+  box-shadow: 0px 0px 20px lightgrey;
+  border: 0px solid white; 
+  padding: 20px 40px 20px 40px;
+  text-align: left;
+}
+
+.game-score {
+  width: 30%;
+  height: 260px;
+  margin-left: 40px;
+  background-color: white;
+  border-radius: 20px;
+  box-shadow: 0px 0px 20px lightgrey;
+  border: 0px solid white; 
+  padding: 20px 40px 20px 40px;
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: row;
+}
+
+.game-row-3 {
+  margin-top: 40px;
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+}
+
+.game-ch-va {
+  width: 30%;
+  height: 240px;
+  margin-left: 40px;
+  background-color: white;
+  border-radius: 20px;
+  box-shadow: 0px 0px 20px lightgrey;
+  border: 0px solid white; 
+  padding: 20px 40px 20px 40px;
+  text-align: left;
+}
+
+.game-people {
+  width: 30%;
+  height: 240px;
+  margin-left: 40px;
+  background-color: white;
+  border-radius: 20px;
+  box-shadow: 0px 0px 20px lightgrey;
+  border: 0px solid white; 
+  padding: 20px 40px 20px 40px;
+  text-align: left;
+}
+
+.game-related {
+  width: 30%;
+  height: 240px;
+  margin-left: 40px;
+  background-color: white;
+  border-radius: 20px;
+  box-shadow: 0px 0px 20px lightgrey;
+  border: 0px solid white; 
+  padding: 20px 40px 20px 40px;
+  text-align: left;
+}
+
+.related-game-button {
+  width: 100%;
+  height: 50px;
+  border: 2px;
+  border-color: black;
+  border-radius: 24px;
+  background-color: whitesmoke;
+  border-style: groove;
+  cursor: pointer;
+  outline: none;
+}
+
+.critic-review {
+  width: 100%;
+  height: fit-content;
+  margin-left: 40px;
+  background-color: white;
+  border-radius: 20px;
+  box-shadow: 0px 0px 20px lightgrey;
+  border: 0px solid white; 
+  padding: 20px 40px 20px 40px;
+  text-align: left;
+  min-height: 300px;
+}
+
+.c-review {
+  background-color: whitesmoke;
+  padding: 40px;
+  border-radius: 24px;
+  margin-bottom: 20px;
+}
+
+.user-review {
+  width: 100%;
+  height: fit-content;
+  margin-left: 40px;
+  background-color: white;
+  border-radius: 20px;
+  box-shadow: 0px 0px 20px lightgrey;
+  border: 0px solid white; 
+  padding: 20px 40px 20px 40px;
+  text-align: left;
+  min-height: 300px;
+}
+
+.game-add-review input{
+  border: 0;
+  background: none;
+  margin: 20px auto;
+  text-align: left;
+  border: 2px solid #3498db;
+  padding: 14px 10px;
+  width: 70%;
+  outline: none;
+  color: black;
+  border-radius: 24px;
+  transition: 0.25s;
+}
+
+.game-add-review button {
+  border: 0;
+  background: none;
+  display: block;
+  margin: 20px auto;
+  text-align: center;
+  border: 2px solid #f03434;
+  padding: 14px 40px;
+  width: 200px;
+  outline: none;
+  color: black;
+  border-radius: 24px;
+  transition: 0.35s;
+  cursor: pointer;
+}
+
+.game-add-review button:hover {
+  background: #f03434;
+  color: white;
+}
+
+.game-profile {
+  height: fit-content;
+  width: 200px;
+  background-color: lightgrey;
+  border-radius: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  padding: 10px;
+}
+
+.game-profile p {
+  margin-left: 20px;
+  margin-top: 20px;
+}
+
+.game-profile-image {
+  border-radius: 50%;
+  height: 60px;
+  width: 60px;
 }
