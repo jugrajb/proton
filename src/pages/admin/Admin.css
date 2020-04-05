@@ -85,9 +85,9 @@
       display: block;
   }
 
-  label {
-      /* margin-left: 10px;
-      margin-right: 10px; */
+  .label-join {
+      margin-left: 10px;
+      margin-right: 10px;
   }
 
   table {

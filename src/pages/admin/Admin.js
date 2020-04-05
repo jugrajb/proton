@@ -17,9 +17,12 @@ class Admin extends React.PureComponent {
         'password': false, 
         'username': false
       },
+      join_relation_1: "",
+      join_relation_2: "",
       user_filter_response: [],
       best_users_response: [],
-      password_changes_response: []
+      password_changes_response: [],
+      natural_join_response: [],
     }
 
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -28,6 +31,8 @@ class Admin extends React.PureComponent {
     this.handleSearchUsers = this.handleSearchUsers.bind(this);
     this.handleBestUsers = this.handleBestUsers.bind(this);
     this.handlePasswordChanges = this.handlePasswordChanges.bind(this);
+    this.handlePersonNaturalJoin = this.handlePersonNaturalJoin.bind(this);
+    this.handleFormChange = this.handleFormChange.bind(this);
   }
 
   componentDidMount() {
@@ -276,6 +281,80 @@ class Admin extends React.PureComponent {
     )
   }
 
+  // Natural join on person tables
+
+  handlePersonNaturalJoin(event) {
+    event.preventDefault();
+    const r1 = this.state.join_relation_1;
+    const r2 = this.state.join_relation_2;
+    if (r1 && r2) {
+      get(['natural-join', r1, r2].join('/'))
+      .then((res) => {
+        if (res.data) {
+          this.setState({natural_join_response : res.data});
+        } else {
+          this.setState({natural_join_response : []});
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    } else {
+      this.setState({natural_join_response : []});
+    }
+  }
+
+  handleFormChange(event) {
+    let stateObj = {}
+    stateObj[event.target.id] = event.target.value;
+    this.setState(stateObj);
+  }
+
+
+  getPersonNaturalJoin() {
+    return (
+      <div className="tool">
+        <div className="title-text">Person Table Joins</div>
+        <div className="tool-content">
+          <form onSubmit={this.handlePersonNaturalJoin}
+          >
+            <select 
+              id="join_relation_1"
+              value={this.join_relation_1} 
+              onChange={this.handleFormChange}
+            >
+              <option value=""></option>
+              <option value="VideoGamePerson">VideoGamePerson</option>
+              <option value="VoiceActor">VoiceActor</option>
+              <option value="Director">Director</option>
+              <option value="WorkedOn">WorkedOn</option>
+            </select>
+            <label class="label-join">Natural Join</label>
+            <select 
+              id="join_relation_2"
+              value={this.join_relation_1} 
+              onChange={this.handleFormChange}
+              style={{'margin-right':'10px'}}
+            >
+              <option value=""></option>
+              <option value="VideoGamePerson">VideoGamePerson</option>
+              <option value="VoiceActor">VoiceActor</option>
+              <option value="Director">Director</option>
+              <option value="WorkedOn">WorkedOn</option>
+            </select>
+            <input 
+              className='search-button'
+              type="submit" 
+              value="SEARCH"
+            />
+          </form>
+        </div>
+        <div className="tool-content">
+          {this.renderTable(this.state.natural_join_response)}
+        </div>
+      </div>
+    );
+  }
 
   render() {
     return [
@@ -290,6 +369,7 @@ class Admin extends React.PureComponent {
               {this.searchUsersFilter()}
               {this.getBestReviewers()}
               {this.getPasswordChanges()}
+              {this.getPersonNaturalJoin()}
             </div>
           </div>
         </div>
